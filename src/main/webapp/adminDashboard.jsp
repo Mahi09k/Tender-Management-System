@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -12,7 +13,7 @@
             <ul>
                 <li><a href="adminDashboard.jsp">Dashboard</a></li>
                 <li><a href="UserServlet">User Management</a></li>
-                <li><a href="tenderManagement.jsp">Tender Management</a></li>
+                <li><a href="TenderServlet">Tender Management</a></li>
                 <li><a href="bidManagement.jsp">Bid Management</a></li>
                 <li><a href="reports.jsp">Reports and Analytics</a></li>
                 <li><a href="notifications.jsp">Notifications and Alerts</a></li>

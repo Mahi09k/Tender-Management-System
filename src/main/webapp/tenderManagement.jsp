@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="com.model.Tender" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,14 +36,17 @@
                     <th>Description</th>
                     <th>Start Date</th>
                     <th>End Date</th>
+                    <th>Price</th> <!-- Added price column -->
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <% 
-                    List<Tender> tenders = (List<Tender>) request.getAttribute("tenders");
-                    if (tenders != null && !tenders.isEmpty()) {
-                        for (Tender tender : tenders) {
+                    Object tendersObj = request.getAttribute("tenders");
+                    if (tendersObj instanceof List<?>) {
+                        List<Tender> tenders = (ArrayList<Tender>) tendersObj;
+                        if (!tenders.isEmpty()) {
+                            for (Tender tender : tenders) {
                 %>
                     <tr>
                         <td><%= tender.getId() %></td>
@@ -50,17 +54,25 @@
                         <td><%= tender.getDescription() %></td>
                         <td><%= tender.getStartDate() %></td>
                         <td><%= tender.getEndDate() %></td>
+                        <td><%= tender.getPrice() %></td> <!-- Added price field -->
                         <td>
                             <a href="TenderServlet?action=edit&tenderId=<%= tender.getId() %>">Edit</a>
                             <a href="TenderServlet?action=delete&tenderId=<%= tender.getId() %>">Delete</a>
                         </td>
                     </tr>
                 <% 
+                            }
+                        } else {
+                %>
+                    <tr>
+                        <td colspan="7">No tenders found.</td> <!-- Adjusted colspan -->
+                    </tr>
+                <% 
                         }
                     } else {
                 %>
                     <tr>
-                        <td colspan="6">No tenders found.</td>
+                        <td colspan="7">No tenders found.</td> <!-- Adjusted colspan -->
                     </tr>
                 <% 
                     }

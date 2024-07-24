@@ -43,7 +43,8 @@ public class TenderServlet extends HttpServlet {
                     String description = resultSet.getString("description");
                     String startDate = resultSet.getString("start_date");
                     String endDate = resultSet.getString("end_date");
-                    tenders.add(new Tender(id, title, description, startDate, endDate));
+                    double price = resultSet.getDouble("price"); // Updated to include price
+                    tenders.add(new Tender(id, title, description, startDate, endDate, price));
                 }
             }
         } catch (Exception e) {
@@ -68,7 +69,8 @@ public class TenderServlet extends HttpServlet {
                         String description = resultSet.getString("description");
                         String startDate = resultSet.getString("start_date");
                         String endDate = resultSet.getString("end_date");
-                        tender = new Tender(tenderId, title, description, startDate, endDate);
+                        double price = resultSet.getDouble("price"); // Updated to include price
+                        tender = new Tender(tenderId, title, description, startDate, endDate, price);
                     }
                 }
             }

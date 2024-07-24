@@ -1,5 +1,5 @@
 package com.controller;
-
+//TODO add the delete feature by seeing the tenderservlet
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
