@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="com.model.User" %>
+<%@ page import="com.model.Bid" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Management</title>
+    <title>Bid Management</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
-        <h1>User Management</h1>
+        <h1>Bid Management</h1>
         <nav>
             <ul>
                 <li><a href="adminDashboard.jsp">Dashboard</a></li>
@@ -26,29 +28,33 @@
     </header>
 
     <main>
-        <h2>All Users</h2>
+        <h2>All Bids</h2>
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Role</th>
+                    <th>Bid ID</th>
+                    <th>Tender ID</th>
+                    <th>User ID</th>
+                    <th>Bid Amount</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <% 
-                    List<User> users = (List<User>) request.getAttribute("users");
-                    if (users != null && !users.isEmpty()) {
-                        for (User user : users) {
+                    List<Bid> bids = (List<Bid>) request.getAttribute("bids");
+                    if (bids != null && !bids.isEmpty()) {
+                        for (Bid bid : bids) {
                 %>
                     <tr>
-                        <td><%= user.getId() %></td>
-                        <td><%= user.getUsername() %></td>
-                        <td><%= user.getRole() %></td>
+                        <td><%= bid.getBidId() %></td>
+                        <td><%= bid.getTenderId() %></td>
+                        <td><%= bid.getUserId() %></td>
+                        <td><%= bid.getBidAmount() %></td>
+                        <td><%= bid.getBidStatus() %></td>
                         <td>
-                            <a href="UserServlet?action=edit&userId=<%= user.getId() %>">Edit</a> |
-                            <a href="UserServlet?action=delete&userId=<%= user.getId() %>">Delete</a>
+                            <a href="BidServlet?action=edit&bidId=<%= bid.getBidId() %>">Edit</a>
+                            <a href="BidServlet?action=delete&bidId=<%= bid.getBidId() %>">Delete</a>
                         </td>
                     </tr>
                 <% 
@@ -56,14 +62,14 @@
                     } else {
                 %>
                     <tr>
-                        <td colspan="4">No users found.</td>
+                        <td colspan="6">No bids found.</td>
                     </tr>
                 <% 
                     }
                 %>
             </tbody>
         </table>
-        <a href="addUser.jsp">Add New User</a>
+        <a href="addBid.jsp">Submit New Bid</a>
     </main>
 
     <footer>

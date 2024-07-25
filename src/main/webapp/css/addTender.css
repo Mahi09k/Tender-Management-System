@@ -4,9 +4,6 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 header {
@@ -38,13 +35,12 @@ nav ul li a {
 }
 
 main {
-    max-width: 800px;
+    max-width: 600px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    flex: 1;
 }
 
 main form {
@@ -77,57 +73,12 @@ main form button:hover {
     background-color: #555;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 12px;
-    text-align: center;
-}
-
-th {
-    background-color: #333;
-    color: white;
-}
-
-td {
-    background-color: #f9f9f9;
-}
-
-tr:nth-child(even) td {
-    background-color: #f2f2f2;
-}
-
-a {
-    display: inline-block;
-    margin: 10px 0;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: white;
-    background-color: #333;
-    border-radius: 5px;
-    font-size: 1em;
-    transition: background-color 0.3s;
-}
-
-a:hover {
-    background-color: #555;
-}
-
 footer {
     text-align: center;
     padding: 10px 0;
     background-color: #333;
     color: #fff;
+    position: fixed;
     width: 100%;
-    position: relative;
     bottom: 0;
 }

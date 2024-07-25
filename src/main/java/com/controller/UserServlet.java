@@ -1,5 +1,5 @@
 package com.controller;
-//TODO add the delete feature by seeing the tenderservlet
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -133,16 +133,24 @@ public class UserServlet extends HttpServlet {
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userId = Integer.parseInt(request.getParameter("userId"));
 
+        System.out.println("Attempting to delete user with ID: " + userId); // Debugging statement
+
         try (Connection connection = DBConnection.getConnection()) {
             String sql = "DELETE FROM users WHERE id=?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, userId);
-                statement.executeUpdate();
+                int rowsAffected = statement.executeUpdate();
+                System.out.println("Rows affected: " + rowsAffected); // Debugging statement
+
+                if (rowsAffected == 0) {
+                    System.out.println("No user found with ID: " + userId); // Debugging statement
+                }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Print stack trace for debugging
         }
 
         response.sendRedirect("UserServlet");
     }
+
 }

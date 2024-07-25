@@ -4,6 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.controller.LoginServlet</servlet-class>
@@ -18,19 +19,29 @@
         <servlet-name>TenderServlet</servlet-name>
         <servlet-class>com.controller.TenderServlet</servlet-class>
     </servlet>
+    
+    <servlet>
+    	<servlet-name>BidServlet</servlet-name>
+    	<servlet-class>com.controller.BidServlet</servlet-class>
+    </servlet>	
 
-    <servlet-mapping>
+    <servlet-mapping> 
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>UserServlet</servlet-name>
+    
+    <servlet-mapping> 
+     <servlet-name>UserServlet</servlet-name>
         <url-pattern>/UserServlet</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>TenderServlet</servlet-name>
         <url-pattern>/TenderServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+    	<servlet-name>BidServlet</servlet-name>
+    	<url-pattern>/BidServlet</url-pattern>
     </servlet-mapping>
 </web-app>
