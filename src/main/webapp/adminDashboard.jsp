@@ -62,8 +62,8 @@
         <section id="quick-actions">
             <h2>Quick Actions</h2>
             <ul>
-                <li><a href="createTender.jsp">Create New Tender</a></li>
-                <li><a href="UserServlet?action=list">Manage Users</a></li>
+                <li><a href="addTender.jsp">Create New Tender</a></li>
+                <li><a href="UserServlet">Manage Users</a></li>
                 <li><a href="viewReports.jsp">View Reports</a></li>
                 <li><a href="sendNotification.jsp">Send Notification</a></li>
             </ul>
