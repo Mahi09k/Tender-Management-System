@@ -40,7 +40,7 @@ input[type="password"] {
 
 /* Style for submit button */
 button {
-    background-color: #000;
+    background-color: rgb(255, 255, 128);
     color: #fff;
     border: none;
     padding: 10px 15px;
