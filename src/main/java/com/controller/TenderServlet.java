@@ -7,11 +7,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.model.DBConnection;
 import com.model.Tender;
 
@@ -22,18 +24,22 @@ public class TenderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+
         if (action == null || action.isEmpty()) {
             listTenders(request, response);
         } else if ("edit".equals(action)) {
             showEditForm(request, response);
         } else if ("delete".equals(action)) {
             deleteTender(request, response);
+        } else if ("report".equals(action)) {
+            generateReport(request, response);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+
         if ("add".equals(action)) {
             addTender(request, response);
         } else if ("update".equals(action)) {
@@ -68,6 +74,7 @@ public class TenderServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String tenderIdParam = request.getParameter("tenderId");
         int tenderId = 0;
+
         try {
             tenderId = Integer.parseInt(tenderIdParam);
         } catch (NumberFormatException e) {
@@ -158,23 +165,51 @@ public class TenderServlet extends HttpServlet {
     private void deleteTender(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int tenderId = Integer.parseInt(request.getParameter("tenderId"));
 
-        System.out.println("Attempting to delete tender with ID: " + tenderId); // Debugging statement
-
         try (Connection connection = DBConnection.getConnection()) {
             String sql = "DELETE FROM tenders WHERE id=?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, tenderId);
-                int rowsAffected = statement.executeUpdate();
-                System.out.println("Rows affected: " + rowsAffected); // Debugging statement
-
-                if (rowsAffected == 0) {
-                    System.out.println("No tender found with ID: " + tenderId); // Debugging statement
-                }
+                statement.executeUpdate();
             }
         } catch (Exception e) {
-            e.printStackTrace(); // Print stack trace for debugging
+            e.printStackTrace();
         }
 
         response.sendRedirect("TenderServlet");
+    }
+
+    private void generateReport(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Tender> tenders = new ArrayList<>();
+        int totalTenders = 0;
+
+        try (Connection connection = DBConnection.getConnection()) {
+            // Get all tenders
+            String sql = "SELECT * FROM tenders";
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String title = resultSet.getString("title");
+                    String description = resultSet.getString("description");
+                    String startDate = resultSet.getString("start_date");
+                    String endDate = resultSet.getString("end_date");
+                    double price = resultSet.getDouble("price");
+                    tenders.add(new Tender(id, title, description, startDate, endDate, price));
+                }
+            }
+
+            // Get total number of tenders
+            sql = "SELECT COUNT(*) AS total FROM tenders";
+            try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
+                if (resultSet.next()) {
+                    totalTenders = resultSet.getInt("total");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        request.setAttribute("tenders", tenders);
+        request.setAttribute("totalTenders", totalTenders);
+        request.getRequestDispatcher("reports.jsp").forward(request, response);
     }
 }

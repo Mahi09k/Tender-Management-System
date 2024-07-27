@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Supplier Login</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
     <form action="login" method="post">
