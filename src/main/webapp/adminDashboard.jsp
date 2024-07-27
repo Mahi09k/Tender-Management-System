@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admindashboard.css">
 </head>
 <body>
     <header>
@@ -26,37 +26,38 @@
     <main>
         <section id="overview">
             <h2>Overview</h2>
-            <p>Welcome, Admin! Here’s a quick overview of the system status:</p>
-            <ul>
-                <li>Total Users: 
-                    <%
-                        // Replace the following with actual code to fetch total users from the database
-                        int totalUsers = 100; // Example value
-                        out.print(totalUsers);
-                    %>
-                </li>
-                <li>Active Tenders: 
-                    <%
-                        // Replace the following with actual code to fetch active tenders from the database
-                        int activeTenders = 10; // Example value
-                        out.print(activeTenders);
-                    %>
-                </li>
-                <li>Pending Bids: 
-                    <%
-                        // Replace the following with actual code to fetch pending bids from the database
-                        int pendingBids = 5; // Example value
-                        out.print(pendingBids);
-                    %>
-                </li>
-                <li>New Notifications: 
-                    <%
-                        // Replace the following with actual code to fetch new notifications from the database
-                        int newNotifications = 3; // Example value
-                        out.print(newNotifications);
-                    %>
-                </li>
-            </ul>
+            <div class="metrics">
+                <div class="metric">
+                    <h3>Total Tenders</h3>
+                    <p>
+                        <%
+                            // Replace the following with actual code to fetch total tenders from the database
+                            int totalTenders = 10; // Example value
+                            out.print(totalTenders);
+                        %>
+                    </p>
+                </div>
+                <div class="metric">
+                    <h3>Pending Bids</h3>
+                    <p>
+                        <%
+                            // Replace the following with actual code to fetch pending bids from the database
+                            int pendingBids = 5; // Example value
+                            out.print(pendingBids);
+                        %>
+                    </p>
+                </div>
+                <div class="metric">
+                    <h3>New Notifications</h3>
+                    <p>
+                        <%
+                            // Replace the following with actual code to fetch new notifications from the database
+                            int newNotifications = 3; // Example value
+                            out.print(newNotifications);
+                        %>
+                    </p>
+                </div>
+            </div>
         </section>
 
         <section id="quick-actions">
