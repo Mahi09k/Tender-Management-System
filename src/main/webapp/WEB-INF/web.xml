@@ -30,6 +30,36 @@
     	<description></description>
     	<servlet-class>com.controller.ReportServlet</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>RegisterServlet</servlet-name>
+    	<display-name>RegisterServlet</display-name>
+    	<description></description>
+    	<servlet-class>com.controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>CustomerDashboardServlet</servlet-name>
+    	<display-name>CustomerDashboardServlet</display-name>
+    	<description></description>
+    	<servlet-class>com.controller.CustomerDashboardServlet</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>AddTenderServlet</servlet-name>
+    	<display-name>AddTenderServlet</display-name>
+    	<description></description>
+    	<servlet-class>com.controller.AddTenderServlet</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>CustomerTendersServlet</servlet-name>
+    	<display-name>CustomerTendersServlet</display-name>
+    	<description></description>
+    	<servlet-class>com.controller.CustomerTendersServlet</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>ViewBidsServlet</servlet-name>
+    	<display-name>ViewBidsServlet</display-name>
+    	<description></description>
+    	<servlet-class>com.controller.ViewBidsServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping> 
         <servlet-name>LoginServlet</servlet-name>
@@ -53,5 +83,26 @@
     <servlet-mapping>
     	<servlet-name>ReportServlet</servlet-name>
     	<url-pattern>/ReportServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+    	<servlet-name>RegisterServlet</servlet-name>
+    	<url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>CustomerDashboardServlet</servlet-name>
+    	<url-pattern>/CustomerDashboardServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>AddTenderServlet</servlet-name>
+    	<url-pattern>/AddTenderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>CustomerTendersServlet</servlet-name>
+    	<url-pattern>/CustomerTendersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>ViewBidsServlet</servlet-name>
+    	<url-pattern>/ViewBidsServlet</url-pattern>
     </servlet-mapping>
 </web-app>
